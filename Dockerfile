@@ -1,26 +1,27 @@
-FROM ubuntu:latest
-MAINTAINER Andy Pemberton <apemberton@cloudbees.com>
+FROM debian:jessie
+MAINTAINER Andrew Pemberton <apemberton@cloudbees.com>
 
-# RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y openjdk-7-jdk openssh-server curl
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openjdk-7-jdk \
+    openssh-server \
+    curl
 
-RUN adduser --quiet jenkins
+# Create Jenkins user
+RUN useradd jenkins
 RUN echo "jenkins:jenkins" | chpasswd
 
-EXPOSE 8080
-EXPOSE 22
+# Make directory for JENKINS_HOME and jenkins-oc.war
+RUN mkdir /usr/lib/jenkins-oc /var/lib/jenkins-oc
 
-# USER jenkins
-RUN mkdir /var/lib/jenkins
-RUN cd /var/lib/jenkins
+# Download jenkins.war
+WORKDIR /usr/lib/jenkins-oc
+RUN curl -L -O -w "Downloaded from: %{url_effective}\\n" "http://jenkins-updates.cloudbees.com/download/oc/*latest*/jenkins-oc.war"
 
-#temporarily just add from local
-ADD jenkins-oc.war /operations-center/jenkins-oc.war
-# RUN curl -L -O 'http://jenkins-updates.cloudbees.com/download/oc/*latest*/jenkins-oc.war'
-# TODO output tag from 301 redirect for -t 
+# Set permissions
+RUN chown -R jenkins:jenkins /usr/lib/jenkins-oc /var/lib/jenkins-oc
 
-ENV JENKINS_HOME /operations-center 
-WORKDIR /operations-center
+EXPOSE 8080 22
+ENV JENKINS_HOME /var/lib/jenkins-oc
 
-CMD ["/bin/bash", "-c", "java -jar jenkins-oc.war --httpPort=8080 --prefix=/operations-center"]
+USER jenkins
+CMD ["java", "-jar", "jenkins-oc.war", "--httpPort=8080", "--prefix=/operations-center"]
