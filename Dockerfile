@@ -1,3 +1,5 @@
+# Docker image for Jenkins Operations Center
+
 FROM debian:jessie
 MAINTAINER Andrew Pemberton <apemberton@cloudbees.com>
 
