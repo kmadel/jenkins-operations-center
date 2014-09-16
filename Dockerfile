@@ -13,5 +13,3 @@ ENV JENKINS_HOME /var/lib/jenkins
 
 ENTRYPOINT ["java", "-jar", "jenkins-oc.war", "--httpPort=8080"]
 CMD ["--prefix=/operations-center"]
-
-# CMD ["java", "-jar", "jenkins-oc.war", "--httpPort=8080", "--prefix=/operations-center"]
