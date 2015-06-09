@@ -1,6 +1,6 @@
 # Docker image for Jenkins Operations Center
 
-FROM kmadel/jenkins-base
+FROM kmadel/jenkins-base:1.0
 MAINTAINER Kurt Madel <kmadel@cloudbees.com>
 
 # Download jenkins-oc.war
