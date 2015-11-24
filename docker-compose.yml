@@ -1,0 +1,15 @@
+cjoc:
+    image: kmadel/jenkins-operations-center:1.609.14.1
+    ports:
+        - "88:8080"
+    expose:
+        - "2222"
+    volumes:
+        - ./data/joc:/var/jenkins_home
+    environment:
+        - JENKINS_JNLP_PORT=4001
+        - JENKINS_SSH_PORT=2222
+        - JENKINS_PREFIX=
+        - SSHD_HOST=jenkins.beedemo.local
+        - JENKINS_URL=http://jenkins.beedemo.local
+    restart: always
