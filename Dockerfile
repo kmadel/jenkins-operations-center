@@ -11,6 +11,8 @@ ENV JENKINS_JNLP_PORT 4001
 ENV JENKINS_SSH_PORT 2021
 ENV JENKINS_HTTP_PORT 8080
 ENV JENKINS_URL http://jenkins.beedemo.local:8080/cjoc
+#when setting up in HA, set to flase to skip copying ref files and plugins as that only needs to be done once per HA cluster
+ENV COPY_REF_FILES true
 
 # Jenkins is ran with user `jenkins`, uid = 1000
 # If you bind mount a volume from host/volume from a data container, 
