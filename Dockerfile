@@ -39,7 +39,7 @@ COPY init-disable.groovy /usr/share/jenkins/ref/init.groovy.d/init_99_disable.gr
 
 ENV JENKINS_VERSION 1.625.3.1
 # https://repo-internal.cloudbees.com/com/cloudbees/operations-center/server/operations-center-war/$JENKINS_VERSION/operations-center-war-$JENKINS_VERSION.war.sha1
-ENV JENKINS_SHA 7ae1b54ca5fbcfa323a160910043d9aeaf670b87
+ENV JENKINS_SHA 86110f73f382caa6cac4b4d5bc213929cb79fa5e
 
 # could use ADD but this one does not check Last-Modified header 
 # see https://github.com/docker/docker/issues/8331
