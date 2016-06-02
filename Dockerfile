@@ -37,7 +37,7 @@ RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-stati
 COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/init_00_fixed-ports_url.groovy
 COPY init-disable.groovy /usr/share/jenkins/ref/init.groovy.d/init_99_disable.groovy
 
-ENV JENKINS_VERSION 1.642.18.1
+ENV JENKINS_VERSION 1.625.18.3
 # https://repo-internal.cloudbees.com/com/cloudbees/operations-center/server/operations-center-war/$JENKINS_VERSION/operations-center-war-$JENKINS_VERSION.war.sha1
 ENV JENKINS_SHA 27889cbce7ae16fa6f09d50a8b4ef6bc6237e1dc
 
